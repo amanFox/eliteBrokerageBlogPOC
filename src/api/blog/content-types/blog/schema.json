@@ -1,0 +1,82 @@
+{
+  "kind": "collectionType",
+  "collectionName": "blogs",
+  "info": {
+    "singularName": "blog",
+    "pluralName": "blogs",
+    "displayName": "blog",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "minLength": 2
+    },
+    "shortDescription": {
+      "type": "text",
+      "unique": false,
+      "required": true,
+      "minLength": 2
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "mappedBy": "blogs"
+    },
+    "reviewers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::author.author",
+      "inversedBy": "reviewedBlogs"
+    },
+    "authors": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::author.author",
+      "mappedBy": "AuthoredBlogs"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
+    },
+    "heroImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo",
+      "required": false
+    },
+    "section": {
+      "type": "dynamiczone",
+      "components": [
+        "custom-components.section"
+      ]
+    },
+    "richText": {
+      "type": "blocks"
+    },
+    "info": {
+      "type": "text",
+      "default": "This blog editor uses two primary methods for writing blogs. The first is a component-based approach, currently utilizing a custom created 'section' component. This method can be expanded with additional components, although there are some limitations. The main advantage of this approach is that it provides a structured format for blogs, ensuring seamless compatibility with the accompanying React frontend template. The second method involves using a WYSIWYG (What You See Is What You Get) editor. This option offers a more intuitive and visually-oriented blogging experience, allowing writers to see the final layout as they compose their posts."
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_custom_components_paragraphs",
+  "info": {
+    "displayName": "paragraph",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "imagePosition": {
+      "type": "enumeration",
+      "enum": [
+        "above paragraph",
+        "below paragraph",
+        "left of paragraph (1:1)",
+        "right of paragraph (1:1)"
+      ]
+    },
+    "paragraph": {
+      "type": "blocks"
+    }
+  }
+}

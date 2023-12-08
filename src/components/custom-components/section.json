@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_custom_components_sections",
+  "info": {
+    "displayName": "section",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "sectionImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "videos",
+        "files",
+        "audios"
+      ]
+    },
+    "sectionImagePosition": {
+      "type": "enumeration",
+      "enum": [
+        "top ( below title )",
+        "bottom of section"
+      ]
+    },
+    "paragraph": {
+      "type": "component",
+      "repeatable": true,
+      "component": "custom-components.paragraph"
+    }
+  }
+}
