@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_custom_components_pdfs",
+  "info": {
+    "displayName": "PDF"
+  },
+  "options": {},
+  "attributes": {
+    "pdf": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

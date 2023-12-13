@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "asset_managers",
+  "info": {
+    "singularName": "asset-manager",
+    "pluralName": "asset-managers",
+    "displayName": "PDF Manager",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "group": {
+      "type": "dynamiczone",
+      "components": [
+        "custom-components.pdf"
+      ]
+    },
+    "Title": {
+      "type": "string"
+    }
+  }
+}

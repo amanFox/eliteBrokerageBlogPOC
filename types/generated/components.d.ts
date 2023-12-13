@@ -20,6 +20,18 @@ export interface CustomComponentsParagraph extends Schema.Component {
   };
 }
 
+export interface CustomComponentsPdf extends Schema.Component {
+  collectionName: 'components_custom_components_pdfs';
+  info: {
+    displayName: 'PDF';
+  };
+  attributes: {
+    pdf: Attribute.Media;
+    name: Attribute.String;
+    description: Attribute.Text;
+  };
+}
+
 export interface CustomComponentsSection extends Schema.Component {
   collectionName: 'components_custom_components_sections';
   info: {
@@ -91,6 +103,7 @@ declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'custom-components.paragraph': CustomComponentsParagraph;
+      'custom-components.pdf': CustomComponentsPdf;
       'custom-components.section': CustomComponentsSection;
       'shared.meta-social': SharedMetaSocial;
       'shared.seo': SharedSeo;
