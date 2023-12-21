@@ -1,0 +1,46 @@
+{
+  "collectionName": "components_custom_blocks",
+  "info": {
+    "displayName": "block",
+    "icon": "expand",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "richText": {
+      "type": "blocks"
+    },
+    "media": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "videos"
+      ]
+    },
+    "mediaPlacement": {
+      "type": "enumeration",
+      "enum": [
+        "left",
+        "right",
+        "top",
+        "bottom"
+      ],
+      "default": "right"
+    },
+    "table": {
+      "type": "json"
+    },
+    "tablePlacement": {
+      "type": "enumeration",
+      "enum": [
+        "left",
+        "right",
+        "top",
+        "bottom"
+      ],
+      "default": "bottom"
+    }
+  }
+}

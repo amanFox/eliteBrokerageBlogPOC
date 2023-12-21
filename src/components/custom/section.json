@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_custom_sections",
+  "info": {
+    "displayName": "section",
+    "icon": "grid",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "block": {
+      "displayName": "block",
+      "type": "component",
+      "repeatable": true,
+      "component": "custom.block"
+    },
+    "blocksAlignment": {
+      "type": "enumeration",
+      "enum": [
+        "vertical",
+        "horizontal"
+      ],
+      "default": "vertical"
+    }
+  }
+}

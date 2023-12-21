@@ -677,91 +677,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface ApiAssetManagerAssetManager extends Schema.CollectionType {
-  collectionName: 'asset_managers';
-  info: {
-    singularName: 'asset-manager';
-    pluralName: 'asset-managers';
-    displayName: 'PDF Manager';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    group: Attribute.DynamicZone<['custom-components.pdf']>;
-    Title: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::asset-manager.asset-manager',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::asset-manager.asset-manager',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiAuthorAuthor extends Schema.CollectionType {
-  collectionName: 'authors';
-  info: {
-    singularName: 'author';
-    pluralName: 'authors';
-    displayName: 'author';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String &
-      Attribute.Required &
-      Attribute.Unique &
-      Attribute.SetMinMaxLength<{
-        minLength: 2;
-      }>;
-    position: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 2;
-      }>;
-    about: Attribute.Text;
-    AuthoredBlogs: Attribute.Relation<
-      'api::author.author',
-      'manyToMany',
-      'api::blog.blog'
-    >;
-    image: Attribute.Media;
-    reviewedBlogs: Attribute.Relation<
-      'api::author.author',
-      'manyToMany',
-      'api::blog.blog'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::author.author',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::author.author',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiBlogBlog extends Schema.CollectionType {
   collectionName: 'blogs';
   info: {
@@ -774,36 +689,30 @@ export interface ApiBlogBlog extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.Unique &
-      Attribute.SetMinMaxLength<{
-        minLength: 2;
-      }>;
-    shortDescription: Attribute.Text &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 2;
-      }>;
+    heading: Attribute.String & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    slug: Attribute.UID<'api::blog.blog', 'heading'> & Attribute.Required;
+    writer: Attribute.Relation<
+      'api::blog.blog',
+      'manyToOne',
+      'api::writer.writer'
+    >;
+    reviewer: Attribute.Relation<
+      'api::blog.blog',
+      'manyToOne',
+      'api::writer.writer'
+    >;
+    featuredImage: Attribute.Media & Attribute.Required;
     tags: Attribute.Relation<'api::blog.blog', 'manyToMany', 'api::tag.tag'>;
-    reviewers: Attribute.Relation<
-      'api::blog.blog',
-      'manyToMany',
-      'api::author.author'
-    >;
-    authors: Attribute.Relation<
-      'api::blog.blog',
-      'manyToMany',
-      'api::author.author'
-    >;
-    slug: Attribute.UID<'api::blog.blog', 'title'> & Attribute.Required;
-    featured: Attribute.Boolean & Attribute.DefaultTo<false>;
-    heroImage: Attribute.Media & Attribute.Required;
     seo: Attribute.Component<'shared.seo'>;
-    section: Attribute.DynamicZone<['custom-components.section']>;
-    richText: Attribute.Blocks;
-    info: Attribute.Text &
-      Attribute.DefaultTo<"This blog editor uses two primary methods for writing blogs. The first is a component-based approach, currently utilizing a custom created 'section' component. This method can be expanded with additional components, although there are some limitations. The main advantage of this approach is that it provides a structured format for blogs, ensuring seamless compatibility with the accompanying React frontend template. The second method involves using a WYSIWYG (What You See Is What You Get) editor. This option offers a more intuitive and visually-oriented blogging experience, allowing writers to see the final layout as they compose their posts.">;
+    section: Attribute.Component<'custom.section', true>;
+    isFeaturedBlog: Attribute.Boolean & Attribute.DefaultTo<false>;
+    showFeaturedImage: Attribute.Boolean & Attribute.DefaultTo<true>;
+    showWriterInfo: Attribute.Boolean & Attribute.DefaultTo<true>;
+    showRecentNews: Attribute.Boolean & Attribute.DefaultTo<true>;
+    showWhatMakesUsSpecialCTA: Attribute.Boolean & Attribute.DefaultTo<true>;
+    showCategories: Attribute.Boolean & Attribute.DefaultTo<true>;
+    minutesToRead: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -814,26 +723,127 @@ export interface ApiBlogBlog extends Schema.CollectionType {
   };
 }
 
+export interface ApiCategoryCategory extends Schema.CollectionType {
+  collectionName: 'categories';
+  info: {
+    singularName: 'category';
+    pluralName: 'categories';
+    displayName: 'category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required & Attribute.Unique;
+    slug: Attribute.UID<'api::category.category', 'name'>;
+    tags: Attribute.Relation<
+      'api::category.category',
+      'manyToMany',
+      'api::tag.tag'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiTagTag extends Schema.CollectionType {
   collectionName: 'tags';
   info: {
     singularName: 'tag';
     pluralName: 'tags';
-    displayName: 'Tag';
+    displayName: 'tag';
     description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    name: Attribute.String;
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetMinMaxLength<{
+        minLength: 2;
+        maxLength: 32;
+      }>;
     blogs: Attribute.Relation<'api::tag.tag', 'manyToMany', 'api::blog.blog'>;
+    slug: Attribute.UID<'api::tag.tag', 'name'>;
+    categories: Attribute.Relation<
+      'api::tag.tag',
+      'manyToMany',
+      'api::category.category'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::tag.tag', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::tag.tag', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiWriterWriter extends Schema.CollectionType {
+  collectionName: 'writers';
+  info: {
+    singularName: 'writer';
+    pluralName: 'writers';
+    displayName: 'writer';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 2;
+      }>;
+    title: Attribute.String;
+    about: Attribute.Text;
+    profileImage: Attribute.Media;
+    slug: Attribute.UID<'api::writer.writer', 'name'> & Attribute.Required;
+    personalWebsiteLink: Attribute.String;
+    facebook: Attribute.String;
+    twitter: Attribute.String;
+    instagram: Attribute.String;
+    linkedin: Attribute.String;
+    blogsWritten: Attribute.Relation<
+      'api::writer.writer',
+      'oneToMany',
+      'api::blog.blog'
+    >;
+    blogsReviewed: Attribute.Relation<
+      'api::writer.writer',
+      'oneToMany',
+      'api::blog.blog'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::writer.writer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::writer.writer',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
@@ -854,10 +864,10 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'api::asset-manager.asset-manager': ApiAssetManagerAssetManager;
-      'api::author.author': ApiAuthorAuthor;
       'api::blog.blog': ApiBlogBlog;
+      'api::category.category': ApiCategoryCategory;
       'api::tag.tag': ApiTagTag;
+      'api::writer.writer': ApiWriterWriter;
     }
   }
 }

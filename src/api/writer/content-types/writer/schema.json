@@ -1,0 +1,67 @@
+{
+  "kind": "collectionType",
+  "collectionName": "writers",
+  "info": {
+    "singularName": "writer",
+    "pluralName": "writers",
+    "displayName": "writer"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": false,
+      "minLength": 2
+    },
+    "title": {
+      "type": "string"
+    },
+    "about": {
+      "type": "text"
+    },
+    "profileImage": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": false
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "personalWebsiteLink": {
+      "type": "string"
+    },
+    "facebook": {
+      "type": "string"
+    },
+    "twitter": {
+      "type": "string"
+    },
+    "instagram": {
+      "type": "string"
+    },
+    "linkedin": {
+      "type": "string"
+    },
+    "blogsWritten": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::blog.blog",
+      "mappedBy": "writer"
+    },
+    "blogsReviewed": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::blog.blog",
+      "mappedBy": "reviewer"
+    }
+  }
+}

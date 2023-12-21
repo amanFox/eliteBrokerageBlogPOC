@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_custom_tables",
+  "info": {
+    "displayName": "table",
+    "icon": "layer"
+  },
+  "options": {},
+  "attributes": {
+    "table": {
+      "type": "json"
+    }
+  }
+}

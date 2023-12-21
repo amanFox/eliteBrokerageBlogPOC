@@ -1,5 +1,5 @@
 {
-  "/asset-managers": {
+  "/writers": {
     "get": {
       "responses": {
         "200": {
@@ -7,7 +7,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AssetManagerListResponse"
+                "$ref": "#/components/schemas/WriterListResponse"
               }
             }
           }
@@ -64,7 +64,7 @@
         }
       },
       "tags": [
-        "Asset-manager"
+        "Writer"
       ],
       "parameters": [
         {
@@ -169,7 +169,7 @@
           }
         }
       ],
-      "operationId": "get/asset-managers"
+      "operationId": "get/writers"
     },
     "post": {
       "responses": {
@@ -178,7 +178,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AssetManagerResponse"
+                "$ref": "#/components/schemas/WriterResponse"
               }
             }
           }
@@ -235,23 +235,23 @@
         }
       },
       "tags": [
-        "Asset-manager"
+        "Writer"
       ],
       "parameters": [],
-      "operationId": "post/asset-managers",
+      "operationId": "post/writers",
       "requestBody": {
         "required": true,
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/AssetManagerRequest"
+              "$ref": "#/components/schemas/WriterRequest"
             }
           }
         }
       }
     }
   },
-  "/asset-managers/{id}": {
+  "/writers/{id}": {
     "get": {
       "responses": {
         "200": {
@@ -259,7 +259,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AssetManagerResponse"
+                "$ref": "#/components/schemas/WriterResponse"
               }
             }
           }
@@ -316,7 +316,7 @@
         }
       },
       "tags": [
-        "Asset-manager"
+        "Writer"
       ],
       "parameters": [
         {
@@ -330,7 +330,7 @@
           }
         }
       ],
-      "operationId": "get/asset-managers/{id}"
+      "operationId": "get/writers/{id}"
     },
     "put": {
       "responses": {
@@ -339,7 +339,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AssetManagerResponse"
+                "$ref": "#/components/schemas/WriterResponse"
               }
             }
           }
@@ -396,7 +396,7 @@
         }
       },
       "tags": [
-        "Asset-manager"
+        "Writer"
       ],
       "parameters": [
         {
@@ -410,13 +410,13 @@
           }
         }
       ],
-      "operationId": "put/asset-managers/{id}",
+      "operationId": "put/writers/{id}",
       "requestBody": {
         "required": true,
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/AssetManagerRequest"
+              "$ref": "#/components/schemas/WriterRequest"
             }
           }
         }
@@ -487,7 +487,7 @@
         }
       },
       "tags": [
-        "Asset-manager"
+        "Writer"
       ],
       "parameters": [
         {
@@ -501,7 +501,7 @@
           }
         }
       ],
-      "operationId": "delete/asset-managers/{id}"
+      "operationId": "delete/writers/{id}"
     }
   }
 }

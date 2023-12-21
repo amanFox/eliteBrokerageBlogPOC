@@ -12,46 +12,32 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "title": {
+    "heading": {
       "type": "string",
-      "required": true,
-      "unique": true,
-      "minLength": 2
+      "required": true
     },
-    "shortDescription": {
+    "description": {
       "type": "text",
-      "unique": false,
-      "required": true,
-      "minLength": 2
-    },
-    "tags": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::tag.tag",
-      "mappedBy": "blogs"
-    },
-    "reviewers": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::author.author",
-      "inversedBy": "reviewedBlogs"
-    },
-    "authors": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::author.author",
-      "mappedBy": "AuthoredBlogs"
+      "required": true
     },
     "slug": {
       "type": "uid",
-      "targetField": "title",
+      "targetField": "heading",
       "required": true
     },
-    "featured": {
-      "type": "boolean",
-      "default": false
+    "writer": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::writer.writer",
+      "inversedBy": "blogsWritten"
     },
-    "heroImage": {
+    "reviewer": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::writer.writer",
+      "inversedBy": "blogsReviewed"
+    },
+    "featuredImage": {
       "type": "media",
       "multiple": false,
       "required": true,
@@ -59,24 +45,50 @@
         "images"
       ]
     },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "blogs"
+    },
     "seo": {
       "type": "component",
       "repeatable": false,
-      "component": "shared.seo",
-      "required": false
+      "component": "shared.seo"
     },
     "section": {
-      "type": "dynamiczone",
-      "components": [
-        "custom-components.section"
-      ]
+      "type": "component",
+      "repeatable": true,
+      "component": "custom.section"
     },
-    "richText": {
-      "type": "blocks"
+    "isFeaturedBlog": {
+      "type": "boolean",
+      "default": false
     },
-    "info": {
-      "type": "text",
-      "default": "This blog editor uses two primary methods for writing blogs. The first is a component-based approach, currently utilizing a custom created 'section' component. This method can be expanded with additional components, although there are some limitations. The main advantage of this approach is that it provides a structured format for blogs, ensuring seamless compatibility with the accompanying React frontend template. The second method involves using a WYSIWYG (What You See Is What You Get) editor. This option offers a more intuitive and visually-oriented blogging experience, allowing writers to see the final layout as they compose their posts."
+    "showFeaturedImage": {
+      "type": "boolean",
+      "default": true
+    },
+    "showWriterInfo": {
+      "type": "boolean",
+      "default": true
+    },
+    "showRecentNews": {
+      "type": "boolean",
+      "default": true
+    },
+    "showWhatMakesUsSpecialCTA": {
+      "type": "boolean",
+      "default": true
+    },
+    "showCategories": {
+      "type": "boolean",
+      "default": true
+    },
+    "minutesToRead": {
+      "type": "string",
+      "required": false,
+      "regex": "^[0-9]*$"
     }
   }
 }

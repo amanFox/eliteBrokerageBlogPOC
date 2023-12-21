@@ -1,50 +1,46 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
-export interface CustomComponentsParagraph extends Schema.Component {
-  collectionName: 'components_custom_components_paragraphs';
+export interface CustomBlock extends Schema.Component {
+  collectionName: 'components_custom_blocks';
   info: {
-    displayName: 'paragraph';
+    displayName: 'block';
+    icon: 'expand';
     description: '';
   };
   attributes: {
-    image: Attribute.Media;
-    imagePosition: Attribute.Enumeration<
-      [
-        'above paragraph',
-        'below paragraph',
-        'left of paragraph (1:1)',
-        'right of paragraph (1:1)'
-      ]
-    >;
-    paragraph: Attribute.Blocks;
+    richText: Attribute.Blocks;
+    media: Attribute.Media;
+    mediaPlacement: Attribute.Enumeration<['left', 'right', 'top', 'bottom']> &
+      Attribute.DefaultTo<'right'>;
+    table: Attribute.JSON;
+    tablePlacement: Attribute.Enumeration<['left', 'right', 'top', 'bottom']> &
+      Attribute.DefaultTo<'bottom'>;
   };
 }
 
-export interface CustomComponentsPdf extends Schema.Component {
-  collectionName: 'components_custom_components_pdfs';
-  info: {
-    displayName: 'PDF';
-  };
-  attributes: {
-    pdf: Attribute.Media;
-    name: Attribute.String;
-    description: Attribute.Text;
-  };
-}
-
-export interface CustomComponentsSection extends Schema.Component {
-  collectionName: 'components_custom_components_sections';
+export interface CustomSection extends Schema.Component {
+  collectionName: 'components_custom_sections';
   info: {
     displayName: 'section';
+    icon: 'grid';
     description: '';
   };
   attributes: {
-    title: Attribute.String;
-    sectionImage: Attribute.Media;
-    sectionImagePosition: Attribute.Enumeration<
-      ['top ( below title )', 'bottom of section']
-    >;
-    paragraph: Attribute.Component<'custom-components.paragraph', true>;
+    heading: Attribute.String;
+    block: Attribute.Component<'custom.block', true>;
+    blocksAlignment: Attribute.Enumeration<['vertical', 'horizontal']> &
+      Attribute.DefaultTo<'vertical'>;
+  };
+}
+
+export interface CustomTable extends Schema.Component {
+  collectionName: 'components_custom_tables';
+  info: {
+    displayName: 'table';
+    icon: 'layer';
+  };
+  attributes: {
+    table: Attribute.JSON;
   };
 }
 
@@ -102,9 +98,9 @@ export interface SharedSeo extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
-      'custom-components.paragraph': CustomComponentsParagraph;
-      'custom-components.pdf': CustomComponentsPdf;
-      'custom-components.section': CustomComponentsSection;
+      'custom.block': CustomBlock;
+      'custom.section': CustomSection;
+      'custom.table': CustomTable;
       'shared.meta-social': SharedMetaSocial;
       'shared.seo': SharedSeo;
     }
