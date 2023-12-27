@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2023-12-20T11:46:36.413Z"
+    "x-generation-date": "2023-12-26T13:22:12.048Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -1786,25 +1786,7 @@
                                                     }
                                                   }
                                                 },
-                                                "mediaPlacement": {
-                                                  "type": "string",
-                                                  "enum": [
-                                                    "left",
-                                                    "right",
-                                                    "top",
-                                                    "bottom"
-                                                  ]
-                                                },
-                                                "table": {},
-                                                "tablePlacement": {
-                                                  "type": "string",
-                                                  "enum": [
-                                                    "left",
-                                                    "right",
-                                                    "top",
-                                                    "bottom"
-                                                  ]
-                                                }
+                                                "table": {}
                                               }
                                             }
                                           },
@@ -2726,25 +2708,7 @@
                     }
                   }
                 },
-                "mediaPlacement": {
-                  "type": "string",
-                  "enum": [
-                    "left",
-                    "right",
-                    "top",
-                    "bottom"
-                  ]
-                },
-                "table": {},
-                "tablePlacement": {
-                  "type": "string",
-                  "enum": [
-                    "left",
-                    "right",
-                    "top",
-                    "bottom"
-                  ]
-                }
+                "table": {}
               }
             }
           },
@@ -4308,25 +4272,7 @@
                                                       }
                                                     }
                                                   },
-                                                  "mediaPlacement": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                      "left",
-                                                      "right",
-                                                      "top",
-                                                      "bottom"
-                                                    ]
-                                                  },
-                                                  "table": {},
-                                                  "tablePlacement": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                      "left",
-                                                      "right",
-                                                      "top",
-                                                      "bottom"
-                                                    ]
-                                                  }
+                                                  "table": {}
                                                 }
                                               }
                                             },
@@ -6344,25 +6290,7 @@
                                         }
                                       }
                                     },
-                                    "mediaPlacement": {
-                                      "type": "string",
-                                      "enum": [
-                                        "left",
-                                        "right",
-                                        "top",
-                                        "bottom"
-                                      ]
-                                    },
-                                    "table": {},
-                                    "tablePlacement": {
-                                      "type": "string",
-                                      "enum": [
-                                        "left",
-                                        "right",
-                                        "top",
-                                        "bottom"
-                                      ]
-                                    }
+                                    "table": {}
                                   }
                                 }
                               },
@@ -8451,25 +8379,7 @@
                                         }
                                       }
                                     },
-                                    "mediaPlacement": {
-                                      "type": "string",
-                                      "enum": [
-                                        "left",
-                                        "right",
-                                        "top",
-                                        "bottom"
-                                      ]
-                                    },
-                                    "table": {},
-                                    "tablePlacement": {
-                                      "type": "string",
-                                      "enum": [
-                                        "left",
-                                        "right",
-                                        "top",
-                                        "bottom"
-                                      ]
-                                    }
+                                    "table": {}
                                   }
                                 }
                               },

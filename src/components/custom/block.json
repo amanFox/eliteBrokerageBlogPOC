@@ -19,28 +19,8 @@
         "videos"
       ]
     },
-    "mediaPlacement": {
-      "type": "enumeration",
-      "enum": [
-        "left",
-        "right",
-        "top",
-        "bottom"
-      ],
-      "default": "right"
-    },
     "table": {
       "type": "json"
-    },
-    "tablePlacement": {
-      "type": "enumeration",
-      "enum": [
-        "left",
-        "right",
-        "top",
-        "bottom"
-      ],
-      "default": "bottom"
     }
   }
 }

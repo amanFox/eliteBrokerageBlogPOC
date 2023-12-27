@@ -10,11 +10,7 @@ export interface CustomBlock extends Schema.Component {
   attributes: {
     richText: Attribute.Blocks;
     media: Attribute.Media;
-    mediaPlacement: Attribute.Enumeration<['left', 'right', 'top', 'bottom']> &
-      Attribute.DefaultTo<'right'>;
     table: Attribute.JSON;
-    tablePlacement: Attribute.Enumeration<['left', 'right', 'top', 'bottom']> &
-      Attribute.DefaultTo<'bottom'>;
   };
 }
 
